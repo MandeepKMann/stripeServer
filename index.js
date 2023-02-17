@@ -11,10 +11,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post("/payment", cors(), async (req, res) => {
-	let { amount, id } = req.body
+    let { amount, id } = req.body
 	try {
-		const payment = await stripe.paymentIntents.create({
-			amount,
+        const payment = await stripe.paymentIntents.create({
+            amount,
 			currency: "CAD",
 			description: "Pingu company",
 			payment_method: id,
@@ -22,18 +22,20 @@ app.post("/payment", cors(), async (req, res) => {
 		})
 		console.log("Payment", payment)
 		res.json({
-			message: "Payment successful",
+            message: "Payment successful",
 			success: true
 		})
 	} catch (error) {
-		console.log("Error", error)
+        console.log("Error", error)
 		res.json({
-			message: "Payment failed",
+            message: "Payment failed",
 			success: false
 		})
 	}
 })
 
-app.listen(process.env.PORT || 4000, () => {
-	console.log("Server is listening on port 4000")
-})
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
