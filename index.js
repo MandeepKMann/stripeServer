@@ -34,6 +34,8 @@ app.post("/payment", cors(), async (req, res) => {
 	}
 })
 
-app.listen(process.env.PORT || 4000, () => {
-	console.log("Server is listening on port 4000")
-})
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
